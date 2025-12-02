@@ -1,0 +1,10 @@
+^E:\AILON2\BUILD\CMAKEFILES\2981B74C27EE76BD5DC83DF3F6D85192\GENERATE.STAMP.RULE
+setlocal
+D:\cmake\bin\cmake.exe -SE:/ailon2 -BE:/ailon2/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file E:/ailon2/build/ailon2.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

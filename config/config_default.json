@@ -1,0 +1,217 @@
+{
+  "bot": {
+    "mode": "normal",
+    "attack": "directional",
+    "map": ""
+  },
+  "key": {
+    "aoe_skill": "q",
+    "directional_attack": "shift",
+    "teleport": "e",
+    "jump": "space",
+    "add_hp": "1",
+    "add_mp": "2",
+    "return_home": "home",
+    "party": "p"
+  },
+  "buff_skill": {
+    "keys": ["1","2","3","4","q","e"],
+    "cooldown": [15, 15, 15, 15, 15, 15],
+    "action_cooldown": 1.0
+
+  },
+  "directional_attack": {
+    "range_x": 350,
+    "range_y": 70,
+    "cooldown": 0.9,
+    "character_turn_delay": 0.02
+  },
+  "aoe_skill": {
+    "range_x": 400,
+    "range_y": 170,
+    "cooldown": 0.05
+  },
+  "health_monitor": {
+    "enable": true,
+    "force_heal": false,
+    "add_hp_percent": 50,
+    "add_mp_percent": 50,
+    "add_hp_cooldown": 0.5,
+    "add_mp_cooldown": 0.5,
+    "fps_limit": 20,
+    "return_home_if_no_potion": false,
+    "return_home_watch_dog_timeout": 3
+  },
+  "teleport": {
+    "is_use_teleport_to_walk": false,
+    "cooldown": 1
+  },
+  "edge_teleport": {
+    "enable": true,
+    "trigger_box_width": 20,
+    "trigger_box_height": 10,
+    "color_code": [255, 127, 127]
+  },
+  "party_red_bar": {
+    "lower_red": [0, 60, 60],
+    "upper_red": [0, 100, 100],
+    "offset": [20, 66],
+    "create_party_button_cn_thres": 0.04,
+    "create_party_button_eng_thres": 0.04
+  },
+  "nametag": {
+    "enable": false,
+    "name": "example",
+    "mode": "grayscale",
+    "offset": [-50, 30],
+    "diff_thres": 0.2,
+    "global_diff_thres": 0.2,
+    "split_width": 30
+  },
+  "character": {
+    "width": 100,
+    "height": 150
+  },
+  "monster_detect": {
+    "mode": "contour_only",
+    "diff_thres": 0.8,
+    "search_box_margin": 50,
+    "contour_blur": 5,
+    "with_enemy_hp_bar": true,
+    "hp_bar_color": [71, 204, 64],
+    "max_mob_area_trigger": 1500
+  },
+  "channel_change": {
+    "enable": false,
+    "mode": "pixel",
+    "other_player_move_thres": 10
+  },
+  "scheduled_channel_switching": {
+    "enable": false,
+    "interval_seconds": 1800
+  },
+  "ui_coords": {
+    "ui_y_start": 610,
+    "menu": [1140, 730],
+    "channel": [1140, 666],
+    "random_channel": [877, 161],
+    "random_channel_confirm": [585, 420],
+    "select_character": [888, 275],
+    "login_button_thres": 0.05,
+    "login_button_top_left": [838, 317],
+    "login_button_bottom_right": [940, 373]
+  },
+  "route": {
+    "search_range": 10,
+    "jump_down_cooldown": 3.0,
+    "color_code": {
+      "255,0,0": "left none none",
+      "0,0,255": "right none none",
+      "255,127,0": "left none jump",
+      "0,255,255": "right none jump",
+      "127,255,0": "none down jump",
+      "255,0,255": "none none jump",
+      "0,255,127": "stop stop stop",
+      "255,255,0": "none none goal",
+      "255,0,127": "none up teleport",
+      "127,0,255": "none down teleport",
+      "0,127,0": "left none teleport",
+      "139,69,19": "right none teleport"
+    },
+    "color_code_up_down": {
+      "127,127,127": "none up none",
+      "255,255,127": "none down none"
+    }
+  },
+  "watchdog": {
+    "range": 10,
+    "timeout": 10,
+    "last_attack_timeout": 1200,
+    "last_attack_timeout_action": "change_channel"
+  },
+  "rune_warning_cn": {
+    "top_left": [513, 137],
+    "bottom_right": [768, 177],
+    "diff_thres": 0.15
+  },
+  "rune_warning_eng": {
+    "top_left": [432, 145],
+    "bottom_right": [864, 171],
+    "diff_thres": 0.15
+  },
+  "rune_enable_msg_cn": {
+    "top_left": [559, 57],
+    "bottom_right": [733, 87],
+    "diff_thres": 0.15
+  },
+  "rune_enable_msg_eng": {
+    "top_left": [460, 60],
+    "bottom_right": [702, 83],
+    "diff_thres": 0.15
+  },
+  "rune_detect": {
+    "box_width": 350,
+    "box_height": 150,
+    "diff_thres": 0.2,
+    "debug": false
+  },
+  "rune_find": {
+    "near_rune_duration": 10,
+    "rune_trigger_cooldown": 0.3,
+    "rune_trigger_distance_x": 20,
+    "rune_trigger_distance_y": 200
+  },
+  "rune_solver": {
+    "arrow_box_size": 80,
+    "arrow_box_interval": 170,
+    "arrow_box_coord": [355, 296],
+    "arrow_box_diff_thres": 0.2,
+    "arrow_low_hsv": [340, 40, 40],
+    "arrow_high_hsv": [110, 100, 100],
+    "arrow_highlight_low_hsv": [340, 85, 85],
+    "arrow_highlight_high_hsv": [110, 100, 100]
+  },
+  "minimap": {
+    "player_color": [136, 255, 255],
+    "other_player_color": [0, 0, 255],
+    "top_lef":[1650 ,100],
+    "bottom_right": [1898,264],
+    "debug_window_upscale": 4,
+    "offset": [0, 0]
+  },
+  "patrol": {
+    "range": [0.2, 0.8],
+    "turn_point_thres": 10,
+    "patrol_attack_interval": 2.5
+  },
+  "route_recoder": {
+    "blob_cooldown": 0.7,
+    "map_padding": 30
+  },
+  "game_window": {
+    "title": "aion",
+    "size": [1080, 1920],
+    "ratio_tolerance": 0.08,
+    "title_bar_height": 59
+  },
+  "email": {
+    "enable": false,
+    "sender_email": "maplestoryautolevelup@gmail.com",
+    "sender_password": "lvxfdhthvvrcuojj",
+    "receiver_email": "luckyyu910645@gmailcom"
+  },
+  "system": {
+    "fps_limit_main": 10,
+    "fps_limit_keyboard_controller": 30,
+    "fps_limit_window_capturor": 15,
+    "fps_limit_route_recorder": 10,
+    "fps_limit_auto_dice_roller": 1,
+    "key_debounce_interval": 1,
+    "server": "TW",
+    "language": "cn"
+  },
+  "profiler": {
+    "enable": false,
+    "print_frequency": 30
+  }
+}

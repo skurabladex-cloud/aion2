@@ -1,0 +1,441 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x86</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0DF8B10D-609D-3A35-8268-9FF7634DF67F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>ailon2</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\ailon2\build\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ailon2.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ailon2</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\ailon2\build\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ailon2.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ailon2</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">E:\ailon2\build\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">ailon2.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">ailon2</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">E:\ailon2\build\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">ailon2.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">ailon2</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\ailon2;D:\json\json-develop\single_include;E:\鼠标调用\Interception\library;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "D:/opencv/build" /external:I "D:/opencv/opencv-4.x/include" /external:I "D:/opencv/opencv-4.x/modules/core/include" /external:I "D:/opencv/opencv-4.x/modules/flann/include" /external:I "D:/opencv/opencv-4.x/modules/imgproc/include" /external:I "D:/opencv/opencv-4.x/modules/ml/include" /external:I "D:/opencv/opencv-4.x/modules/photo/include" /external:I "D:/opencv/opencv-4.x/modules/dnn/include" /external:I "D:/opencv/opencv-4.x/modules/features2d/include" /external:I "D:/opencv/opencv-4.x/modules/imgcodecs/include" /external:I "D:/opencv/opencv-4.x/modules/videoio/include" /external:I "D:/opencv/opencv-4.x/modules/calib3d/include" /external:I "D:/opencv/opencv-4.x/modules/highgui/include" /external:I "D:/opencv/opencv-4.x/modules/objdetect/include" /external:I "D:/opencv/opencv-4.x/modules/stitching/include" /external:I "D:/opencv/opencv-4.x/modules/ts/include" /external:I "D:/opencv/opencv-4.x/modules/video/include" /external:I "D:/opencv/opencv-4.x/modules/gapi/include" /utf-8</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NOMINMAX;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;NOMINMAX;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\ailon2;D:\json\json-develop\single_include;E:\鼠标调用\Interception\library;D:\opencv\build;D:\opencv\opencv-4.x\include;D:\opencv\opencv-4.x\modules\core\include;D:\opencv\opencv-4.x\modules\flann\include;D:\opencv\opencv-4.x\modules\imgproc\include;D:\opencv\opencv-4.x\modules\ml\include;D:\opencv\opencv-4.x\modules\photo\include;D:\opencv\opencv-4.x\modules\dnn\include;D:\opencv\opencv-4.x\modules\features2d\include;D:\opencv\opencv-4.x\modules\imgcodecs\include;D:\opencv\opencv-4.x\modules\videoio\include;D:\opencv\opencv-4.x\modules\calib3d\include;D:\opencv\opencv-4.x\modules\highgui\include;D:\opencv\opencv-4.x\modules\objdetect\include;D:\opencv\opencv-4.x\modules\stitching\include;D:\opencv\opencv-4.x\modules\ts\include;D:\opencv\opencv-4.x\modules\video\include;D:\opencv\opencv-4.x\modules\gapi\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\ailon2;D:\json\json-develop\single_include;E:\鼠标调用\Interception\library;D:\opencv\build;D:\opencv\opencv-4.x\include;D:\opencv\opencv-4.x\modules\core\include;D:\opencv\opencv-4.x\modules\flann\include;D:\opencv\opencv-4.x\modules\imgproc\include;D:\opencv\opencv-4.x\modules\ml\include;D:\opencv\opencv-4.x\modules\photo\include;D:\opencv\opencv-4.x\modules\dnn\include;D:\opencv\opencv-4.x\modules\features2d\include;D:\opencv\opencv-4.x\modules\imgcodecs\include;D:\opencv\opencv-4.x\modules\videoio\include;D:\opencv\opencv-4.x\modules\calib3d\include;D:\opencv\opencv-4.x\modules\highgui\include;D:\opencv\opencv-4.x\modules\objdetect\include;D:\opencv\opencv-4.x\modules\stitching\include;D:\opencv\opencv-4.x\modules\ts\include;D:\opencv\opencv-4.x\modules\video\include;D:\opencv\opencv-4.x\modules\gapi\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+D:\cmake\bin\cmake.exe -E copy_if_different E:/鼠标调用/Interception/library/x64/interception.dll E:/ailon2/build/Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>D:\opencv\build\lib\Debug\opencv_gapi4130d.lib;D:\opencv\build\lib\Debug\opencv_highgui4130d.lib;D:\opencv\build\lib\Debug\opencv_ml4130d.lib;D:\opencv\build\lib\Debug\opencv_objdetect4130d.lib;D:\opencv\build\lib\Debug\opencv_photo4130d.lib;D:\opencv\build\lib\Debug\opencv_stitching4130d.lib;D:\opencv\build\lib\Debug\opencv_video4130d.lib;D:\opencv\build\lib\Debug\opencv_videoio4130d.lib;interception.lib;D:\opencv\build\lib\Debug\opencv_imgcodecs4130d.lib;D:\opencv\build\lib\Debug\opencv_dnn4130d.lib;D:\opencv\build\lib\Debug\opencv_calib3d4130d.lib;D:\opencv\build\lib\Debug\opencv_features2d4130d.lib;D:\opencv\build\lib\Debug\opencv_flann4130d.lib;D:\opencv\build\lib\Debug\opencv_imgproc4130d.lib;D:\opencv\build\lib\Debug\opencv_core4130d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>E:/鼠标调用/Interception/library/x64;E:/鼠标调用/Interception/library/x64/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>E:/ailon2/build/Debug/ailon2.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>E:/ailon2/build/Debug/ailon2.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\ailon2;D:\json\json-develop\single_include;E:\鼠标调用\Interception\library;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "D:/opencv/build" /external:I "D:/opencv/opencv-4.x/include" /external:I "D:/opencv/opencv-4.x/modules/core/include" /external:I "D:/opencv/opencv-4.x/modules/flann/include" /external:I "D:/opencv/opencv-4.x/modules/imgproc/include" /external:I "D:/opencv/opencv-4.x/modules/ml/include" /external:I "D:/opencv/opencv-4.x/modules/photo/include" /external:I "D:/opencv/opencv-4.x/modules/dnn/include" /external:I "D:/opencv/opencv-4.x/modules/features2d/include" /external:I "D:/opencv/opencv-4.x/modules/imgcodecs/include" /external:I "D:/opencv/opencv-4.x/modules/videoio/include" /external:I "D:/opencv/opencv-4.x/modules/calib3d/include" /external:I "D:/opencv/opencv-4.x/modules/highgui/include" /external:I "D:/opencv/opencv-4.x/modules/objdetect/include" /external:I "D:/opencv/opencv-4.x/modules/stitching/include" /external:I "D:/opencv/opencv-4.x/modules/ts/include" /external:I "D:/opencv/opencv-4.x/modules/video/include" /external:I "D:/opencv/opencv-4.x/modules/gapi/include" /utf-8</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;NOMINMAX;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;NOMINMAX;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\ailon2;D:\json\json-develop\single_include;E:\鼠标调用\Interception\library;D:\opencv\build;D:\opencv\opencv-4.x\include;D:\opencv\opencv-4.x\modules\core\include;D:\opencv\opencv-4.x\modules\flann\include;D:\opencv\opencv-4.x\modules\imgproc\include;D:\opencv\opencv-4.x\modules\ml\include;D:\opencv\opencv-4.x\modules\photo\include;D:\opencv\opencv-4.x\modules\dnn\include;D:\opencv\opencv-4.x\modules\features2d\include;D:\opencv\opencv-4.x\modules\imgcodecs\include;D:\opencv\opencv-4.x\modules\videoio\include;D:\opencv\opencv-4.x\modules\calib3d\include;D:\opencv\opencv-4.x\modules\highgui\include;D:\opencv\opencv-4.x\modules\objdetect\include;D:\opencv\opencv-4.x\modules\stitching\include;D:\opencv\opencv-4.x\modules\ts\include;D:\opencv\opencv-4.x\modules\video\include;D:\opencv\opencv-4.x\modules\gapi\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\ailon2;D:\json\json-develop\single_include;E:\鼠标调用\Interception\library;D:\opencv\build;D:\opencv\opencv-4.x\include;D:\opencv\opencv-4.x\modules\core\include;D:\opencv\opencv-4.x\modules\flann\include;D:\opencv\opencv-4.x\modules\imgproc\include;D:\opencv\opencv-4.x\modules\ml\include;D:\opencv\opencv-4.x\modules\photo\include;D:\opencv\opencv-4.x\modules\dnn\include;D:\opencv\opencv-4.x\modules\features2d\include;D:\opencv\opencv-4.x\modules\imgcodecs\include;D:\opencv\opencv-4.x\modules\videoio\include;D:\opencv\opencv-4.x\modules\calib3d\include;D:\opencv\opencv-4.x\modules\highgui\include;D:\opencv\opencv-4.x\modules\objdetect\include;D:\opencv\opencv-4.x\modules\stitching\include;D:\opencv\opencv-4.x\modules\ts\include;D:\opencv\opencv-4.x\modules\video\include;D:\opencv\opencv-4.x\modules\gapi\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+D:\cmake\bin\cmake.exe -E copy_if_different E:/鼠标调用/Interception/library/x64/interception.dll E:/ailon2/build/Release
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>D:\opencv\build\lib\Release\opencv_gapi4130.lib;D:\opencv\build\lib\Release\opencv_highgui4130.lib;D:\opencv\build\lib\Release\opencv_ml4130.lib;D:\opencv\build\lib\Release\opencv_objdetect4130.lib;D:\opencv\build\lib\Release\opencv_photo4130.lib;D:\opencv\build\lib\Release\opencv_stitching4130.lib;D:\opencv\build\lib\Release\opencv_video4130.lib;D:\opencv\build\lib\Release\opencv_videoio4130.lib;interception.lib;D:\opencv\build\lib\Release\opencv_imgcodecs4130.lib;D:\opencv\build\lib\Release\opencv_dnn4130.lib;D:\opencv\build\lib\Release\opencv_calib3d4130.lib;D:\opencv\build\lib\Release\opencv_features2d4130.lib;D:\opencv\build\lib\Release\opencv_flann4130.lib;D:\opencv\build\lib\Release\opencv_imgproc4130.lib;D:\opencv\build\lib\Release\opencv_core4130.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>E:/鼠标调用/Interception/library/x64;E:/鼠标调用/Interception/library/x64/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>E:/ailon2/build/Release/ailon2.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>E:/ailon2/build/Release/ailon2.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\ailon2;D:\json\json-develop\single_include;E:\鼠标调用\Interception\library;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "D:/opencv/build" /external:I "D:/opencv/opencv-4.x/include" /external:I "D:/opencv/opencv-4.x/modules/core/include" /external:I "D:/opencv/opencv-4.x/modules/flann/include" /external:I "D:/opencv/opencv-4.x/modules/imgproc/include" /external:I "D:/opencv/opencv-4.x/modules/ml/include" /external:I "D:/opencv/opencv-4.x/modules/photo/include" /external:I "D:/opencv/opencv-4.x/modules/dnn/include" /external:I "D:/opencv/opencv-4.x/modules/features2d/include" /external:I "D:/opencv/opencv-4.x/modules/imgcodecs/include" /external:I "D:/opencv/opencv-4.x/modules/videoio/include" /external:I "D:/opencv/opencv-4.x/modules/calib3d/include" /external:I "D:/opencv/opencv-4.x/modules/highgui/include" /external:I "D:/opencv/opencv-4.x/modules/objdetect/include" /external:I "D:/opencv/opencv-4.x/modules/stitching/include" /external:I "D:/opencv/opencv-4.x/modules/ts/include" /external:I "D:/opencv/opencv-4.x/modules/video/include" /external:I "D:/opencv/opencv-4.x/modules/gapi/include" /utf-8</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;NOMINMAX;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;NOMINMAX;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\ailon2;D:\json\json-develop\single_include;E:\鼠标调用\Interception\library;D:\opencv\build;D:\opencv\opencv-4.x\include;D:\opencv\opencv-4.x\modules\core\include;D:\opencv\opencv-4.x\modules\flann\include;D:\opencv\opencv-4.x\modules\imgproc\include;D:\opencv\opencv-4.x\modules\ml\include;D:\opencv\opencv-4.x\modules\photo\include;D:\opencv\opencv-4.x\modules\dnn\include;D:\opencv\opencv-4.x\modules\features2d\include;D:\opencv\opencv-4.x\modules\imgcodecs\include;D:\opencv\opencv-4.x\modules\videoio\include;D:\opencv\opencv-4.x\modules\calib3d\include;D:\opencv\opencv-4.x\modules\highgui\include;D:\opencv\opencv-4.x\modules\objdetect\include;D:\opencv\opencv-4.x\modules\stitching\include;D:\opencv\opencv-4.x\modules\ts\include;D:\opencv\opencv-4.x\modules\video\include;D:\opencv\opencv-4.x\modules\gapi\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\ailon2;D:\json\json-develop\single_include;E:\鼠标调用\Interception\library;D:\opencv\build;D:\opencv\opencv-4.x\include;D:\opencv\opencv-4.x\modules\core\include;D:\opencv\opencv-4.x\modules\flann\include;D:\opencv\opencv-4.x\modules\imgproc\include;D:\opencv\opencv-4.x\modules\ml\include;D:\opencv\opencv-4.x\modules\photo\include;D:\opencv\opencv-4.x\modules\dnn\include;D:\opencv\opencv-4.x\modules\features2d\include;D:\opencv\opencv-4.x\modules\imgcodecs\include;D:\opencv\opencv-4.x\modules\videoio\include;D:\opencv\opencv-4.x\modules\calib3d\include;D:\opencv\opencv-4.x\modules\highgui\include;D:\opencv\opencv-4.x\modules\objdetect\include;D:\opencv\opencv-4.x\modules\stitching\include;D:\opencv\opencv-4.x\modules\ts\include;D:\opencv\opencv-4.x\modules\video\include;D:\opencv\opencv-4.x\modules\gapi\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+D:\cmake\bin\cmake.exe -E copy_if_different E:/鼠标调用/Interception/library/x64/interception.dll E:/ailon2/build/MinSizeRel
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>D:\opencv\build\lib\Release\opencv_gapi4130.lib;D:\opencv\build\lib\Release\opencv_highgui4130.lib;D:\opencv\build\lib\Release\opencv_ml4130.lib;D:\opencv\build\lib\Release\opencv_objdetect4130.lib;D:\opencv\build\lib\Release\opencv_photo4130.lib;D:\opencv\build\lib\Release\opencv_stitching4130.lib;D:\opencv\build\lib\Release\opencv_video4130.lib;D:\opencv\build\lib\Release\opencv_videoio4130.lib;interception.lib;D:\opencv\build\lib\Release\opencv_imgcodecs4130.lib;D:\opencv\build\lib\Release\opencv_dnn4130.lib;D:\opencv\build\lib\Release\opencv_calib3d4130.lib;D:\opencv\build\lib\Release\opencv_features2d4130.lib;D:\opencv\build\lib\Release\opencv_flann4130.lib;D:\opencv\build\lib\Release\opencv_imgproc4130.lib;D:\opencv\build\lib\Release\opencv_core4130.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>E:/鼠标调用/Interception/library/x64;E:/鼠标调用/Interception/library/x64/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>E:/ailon2/build/MinSizeRel/ailon2.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>E:/ailon2/build/MinSizeRel/ailon2.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\ailon2;D:\json\json-develop\single_include;E:\鼠标调用\Interception\library;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "D:/opencv/build" /external:I "D:/opencv/opencv-4.x/include" /external:I "D:/opencv/opencv-4.x/modules/core/include" /external:I "D:/opencv/opencv-4.x/modules/flann/include" /external:I "D:/opencv/opencv-4.x/modules/imgproc/include" /external:I "D:/opencv/opencv-4.x/modules/ml/include" /external:I "D:/opencv/opencv-4.x/modules/photo/include" /external:I "D:/opencv/opencv-4.x/modules/dnn/include" /external:I "D:/opencv/opencv-4.x/modules/features2d/include" /external:I "D:/opencv/opencv-4.x/modules/imgcodecs/include" /external:I "D:/opencv/opencv-4.x/modules/videoio/include" /external:I "D:/opencv/opencv-4.x/modules/calib3d/include" /external:I "D:/opencv/opencv-4.x/modules/highgui/include" /external:I "D:/opencv/opencv-4.x/modules/objdetect/include" /external:I "D:/opencv/opencv-4.x/modules/stitching/include" /external:I "D:/opencv/opencv-4.x/modules/ts/include" /external:I "D:/opencv/opencv-4.x/modules/video/include" /external:I "D:/opencv/opencv-4.x/modules/gapi/include" /utf-8</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;NOMINMAX;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;NOMINMAX;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\ailon2;D:\json\json-develop\single_include;E:\鼠标调用\Interception\library;D:\opencv\build;D:\opencv\opencv-4.x\include;D:\opencv\opencv-4.x\modules\core\include;D:\opencv\opencv-4.x\modules\flann\include;D:\opencv\opencv-4.x\modules\imgproc\include;D:\opencv\opencv-4.x\modules\ml\include;D:\opencv\opencv-4.x\modules\photo\include;D:\opencv\opencv-4.x\modules\dnn\include;D:\opencv\opencv-4.x\modules\features2d\include;D:\opencv\opencv-4.x\modules\imgcodecs\include;D:\opencv\opencv-4.x\modules\videoio\include;D:\opencv\opencv-4.x\modules\calib3d\include;D:\opencv\opencv-4.x\modules\highgui\include;D:\opencv\opencv-4.x\modules\objdetect\include;D:\opencv\opencv-4.x\modules\stitching\include;D:\opencv\opencv-4.x\modules\ts\include;D:\opencv\opencv-4.x\modules\video\include;D:\opencv\opencv-4.x\modules\gapi\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\ailon2;D:\json\json-develop\single_include;E:\鼠标调用\Interception\library;D:\opencv\build;D:\opencv\opencv-4.x\include;D:\opencv\opencv-4.x\modules\core\include;D:\opencv\opencv-4.x\modules\flann\include;D:\opencv\opencv-4.x\modules\imgproc\include;D:\opencv\opencv-4.x\modules\ml\include;D:\opencv\opencv-4.x\modules\photo\include;D:\opencv\opencv-4.x\modules\dnn\include;D:\opencv\opencv-4.x\modules\features2d\include;D:\opencv\opencv-4.x\modules\imgcodecs\include;D:\opencv\opencv-4.x\modules\videoio\include;D:\opencv\opencv-4.x\modules\calib3d\include;D:\opencv\opencv-4.x\modules\highgui\include;D:\opencv\opencv-4.x\modules\objdetect\include;D:\opencv\opencv-4.x\modules\stitching\include;D:\opencv\opencv-4.x\modules\ts\include;D:\opencv\opencv-4.x\modules\video\include;D:\opencv\opencv-4.x\modules\gapi\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+D:\cmake\bin\cmake.exe -E copy_if_different E:/鼠标调用/Interception/library/x64/interception.dll E:/ailon2/build/RelWithDebInfo
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>D:\opencv\build\lib\Release\opencv_gapi4130.lib;D:\opencv\build\lib\Release\opencv_highgui4130.lib;D:\opencv\build\lib\Release\opencv_ml4130.lib;D:\opencv\build\lib\Release\opencv_objdetect4130.lib;D:\opencv\build\lib\Release\opencv_photo4130.lib;D:\opencv\build\lib\Release\opencv_stitching4130.lib;D:\opencv\build\lib\Release\opencv_video4130.lib;D:\opencv\build\lib\Release\opencv_videoio4130.lib;interception.lib;D:\opencv\build\lib\Release\opencv_imgcodecs4130.lib;D:\opencv\build\lib\Release\opencv_dnn4130.lib;D:\opencv\build\lib\Release\opencv_calib3d4130.lib;D:\opencv\build\lib\Release\opencv_features2d4130.lib;D:\opencv\build\lib\Release\opencv_flann4130.lib;D:\opencv\build\lib\Release\opencv_imgproc4130.lib;D:\opencv\build\lib\Release\opencv_core4130.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>E:/鼠标调用/Interception/library/x64;E:/鼠标调用/Interception/library/x64/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>E:/ailon2/build/RelWithDebInfo/ailon2.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>E:/ailon2/build/RelWithDebInfo/ailon2.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\ailon2\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule E:/ailon2/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+D:\cmake\bin\cmake.exe -SE:/ailon2 -BE:/ailon2/build --check-stamp-file E:/ailon2/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\cmake\share\cmake-4.2\Modules\CMakeCXXInformation.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeRCInformation.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;D:\cmake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\cmake\share\cmake-4.2\Modules\Compiler\MSVC-CXX.cmake;D:\cmake\share\cmake-4.2\Modules\Compiler\MSVC.cmake;D:\cmake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;D:\cmake\share\cmake-4.2\Modules\FindPackageMessage.cmake;D:\cmake\share\cmake-4.2\Modules\Internal\CMakeCXXLinkerInformation.cmake;D:\cmake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;D:\cmake\share\cmake-4.2\Modules\Linker\MSVC-CXX.cmake;D:\cmake\share\cmake-4.2\Modules\Linker\MSVC.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Windows-MSVC-CXX.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Windows.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;D:\opencv\build\OpenCVConfig-version.cmake;D:\opencv\build\OpenCVConfig.cmake;D:\opencv\build\OpenCVModules.cmake;E:\ailon2\build\CMakeFiles\4.2.0\CMakeCXXCompiler.cmake;E:\ailon2\build\CMakeFiles\4.2.0\CMakeRCCompiler.cmake;E:\ailon2\build\CMakeFiles\4.2.0\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\ailon2\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule E:/ailon2/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+D:\cmake\bin\cmake.exe -SE:/ailon2 -BE:/ailon2/build --check-stamp-file E:/ailon2/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\cmake\share\cmake-4.2\Modules\CMakeCXXInformation.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeRCInformation.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;D:\cmake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\cmake\share\cmake-4.2\Modules\Compiler\MSVC-CXX.cmake;D:\cmake\share\cmake-4.2\Modules\Compiler\MSVC.cmake;D:\cmake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;D:\cmake\share\cmake-4.2\Modules\FindPackageMessage.cmake;D:\cmake\share\cmake-4.2\Modules\Internal\CMakeCXXLinkerInformation.cmake;D:\cmake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;D:\cmake\share\cmake-4.2\Modules\Linker\MSVC-CXX.cmake;D:\cmake\share\cmake-4.2\Modules\Linker\MSVC.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Windows-MSVC-CXX.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Windows.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;D:\opencv\build\OpenCVConfig-version.cmake;D:\opencv\build\OpenCVConfig.cmake;D:\opencv\build\OpenCVModules.cmake;E:\ailon2\build\CMakeFiles\4.2.0\CMakeCXXCompiler.cmake;E:\ailon2\build\CMakeFiles\4.2.0\CMakeRCCompiler.cmake;E:\ailon2\build\CMakeFiles\4.2.0\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\ailon2\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule E:/ailon2/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+D:\cmake\bin\cmake.exe -SE:/ailon2 -BE:/ailon2/build --check-stamp-file E:/ailon2/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\cmake\share\cmake-4.2\Modules\CMakeCXXInformation.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeRCInformation.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;D:\cmake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\cmake\share\cmake-4.2\Modules\Compiler\MSVC-CXX.cmake;D:\cmake\share\cmake-4.2\Modules\Compiler\MSVC.cmake;D:\cmake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;D:\cmake\share\cmake-4.2\Modules\FindPackageMessage.cmake;D:\cmake\share\cmake-4.2\Modules\Internal\CMakeCXXLinkerInformation.cmake;D:\cmake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;D:\cmake\share\cmake-4.2\Modules\Linker\MSVC-CXX.cmake;D:\cmake\share\cmake-4.2\Modules\Linker\MSVC.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Windows-MSVC-CXX.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Windows.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;D:\opencv\build\OpenCVConfig-version.cmake;D:\opencv\build\OpenCVConfig.cmake;D:\opencv\build\OpenCVModules.cmake;E:\ailon2\build\CMakeFiles\4.2.0\CMakeCXXCompiler.cmake;E:\ailon2\build\CMakeFiles\4.2.0\CMakeRCCompiler.cmake;E:\ailon2\build\CMakeFiles\4.2.0\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">E:\ailon2\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule E:/ailon2/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+D:\cmake\bin\cmake.exe -SE:/ailon2 -BE:/ailon2/build --check-stamp-file E:/ailon2/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\cmake\share\cmake-4.2\Modules\CMakeCXXInformation.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeRCInformation.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;D:\cmake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;D:\cmake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\cmake\share\cmake-4.2\Modules\Compiler\MSVC-CXX.cmake;D:\cmake\share\cmake-4.2\Modules\Compiler\MSVC.cmake;D:\cmake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;D:\cmake\share\cmake-4.2\Modules\FindPackageMessage.cmake;D:\cmake\share\cmake-4.2\Modules\Internal\CMakeCXXLinkerInformation.cmake;D:\cmake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;D:\cmake\share\cmake-4.2\Modules\Linker\MSVC-CXX.cmake;D:\cmake\share\cmake-4.2\Modules\Linker\MSVC.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Windows-MSVC-CXX.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\Windows.cmake;D:\cmake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;D:\opencv\build\OpenCVConfig-version.cmake;D:\opencv\build\OpenCVConfig.cmake;D:\opencv\build\OpenCVModules.cmake;E:\ailon2\build\CMakeFiles\4.2.0\CMakeCXXCompiler.cmake;E:\ailon2\build\CMakeFiles\4.2.0\CMakeRCCompiler.cmake;E:\ailon2\build\CMakeFiles\4.2.0\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">E:\ailon2\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="E:\ailon2\core\main.cpp" />
+    <ClCompile Include="E:\ailon2\core\common.cpp" />
+    <ClCompile Include="E:\ailon2\core\core.cpp" />
+    <ClCompile Include="E:\ailon2\input\GameWindowCapturer.cpp" />
+    <ClCompile Include="E:\ailon2\tree\bt_tree.cpp" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="E:\ailon2\build\ZERO_CHECK.vcxproj">
+      <Project>{903EDD0C-0B38-34DE-B5F6-0D520A626535}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
