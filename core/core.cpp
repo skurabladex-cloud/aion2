@@ -20,12 +20,12 @@ core::core()
 }
 
 
-std::vector< cv::Point2f> core::get_minmap_loction_monster(cv::Mat& bgr)
+std::vector< cv::Point2f> core::get_minmap_loction_monster_white(cv::Mat& bgr)
 {
         std::vector< cv::Point2f > monster;
 
         cv::Point top_left(1650 ,100);
-        cv::Point bottom_right(1898,264);
+        cv::Point bottom_right(1896,263);
 
 
         cv::Rect roi_rect(top_left, bottom_right);
@@ -43,6 +43,10 @@ std::vector< cv::Point2f> core::get_minmap_loction_monster(cv::Mat& bgr)
         // 2️⃣ 生成掩码：检测纯白像素（白色像素=255，其余=0）
         cv::Mat mask_white;
         cv::inRange(  gray_img , 255, 255, mask_white);//mask_white取值0:255
+
+
+
+
 
         // 竖向连接：用“竖线核”
         cv::Mat kV = cv::getStructuringElement(cv::MORPH_RECT, {1, 2});
@@ -65,6 +69,116 @@ std::vector< cv::Point2f> core::get_minmap_loction_monster(cv::Mat& bgr)
         // 3) 连通域
         cv::Mat labels, stats, centroids;
         int n = cv::connectedComponentsWithStats(mask_white, labels, stats, centroids, 8, CV_32S);
+        // ====== 4) 遍历连通域，计算外接圆 ======
+        for (int i = 1; i < n; ++i) { // 0 是背景
+            int area = stats.at<int>(i, cv::CC_STAT_AREA);
+            if (area < 10) continue;              // 过滤小噪点：你可以调 10/20/50
+
+            // 连通域的外接矩形（在 ROI 内的坐标）
+            int x = stats.at<int>(i, cv::CC_STAT_LEFT);//
+            int y = stats.at<int>(i, cv::CC_STAT_TOP);
+            int w = stats.at<int>(i, cv::CC_STAT_WIDTH);
+                int h = stats.at<int>(i, cv::CC_STAT_HEIGHT);
+
+
+
+
+            // 2) 去竖条：细长竖向（高远大于宽）
+           if (std::abs(h-w)>2|| h>5||w>5) continue;
+
+            // 3) （可选）去横条：细长横向
+
+
+            // 只在这个小框里取像素点，速度快很多
+            cv::Rect box(x, y, w, h);
+            cv::Mat lbl_roi = labels(box);
+
+            std::vector<cv::Point2f> pts;
+            pts.reserve(area);
+
+            for (int yy = 0; yy < lbl_roi.rows; ++yy) {
+                const int* row = lbl_roi.ptr<int>(yy);
+                for (int xx = 0; xx < lbl_roi.cols; ++xx) {
+                    if (row[xx] == i) {
+                        // 注意：点坐标要加回 box 的偏移
+                        pts.emplace_back((float)(xx + box.x), (float)(yy + box.y));
+                    }
+                }
+            }
+
+            if (pts.size() < 5) continue; // 点太少没意义
+
+            cv::Point2f center_roi;//圆心
+            float radius;//半径
+            cv::minEnclosingCircle(pts, center_roi, radius);
+
+            // ROI -> 全图坐标
+            cv::Point2f center_global = center_roi + cv::Point2f((float)roi_rect.x, (float)roi_rect.y);
+            monster.push_back(center_global);
+
+
+            // std::cout << "label=" << i
+            //           << " area=" << area
+            //           << " center_roi=(" << center_roi.x << "," << center_roi.y << ")"
+            //           << " center_global=(" << center_global.x << "," << center_global.y << ")"
+            //           << " r=" << radius << "\n";
+         // 可视化（在 ROI 上画）
+            cv::circle(img_frame_debug, center_global, (int)std::round(radius), cv::Scalar(0,255,0), 2);
+            cv::circle(img_frame_debug, center_global, 2, cv::Scalar(0,0,255), -1);
+        }
+    return  monster;
+
+}
+
+/////red
+std::vector< cv::Point2f> core::get_minmap_loction_monster_red_yellow(cv::Mat& bgr)
+{
+        std::vector< cv::Point2f > monster;
+
+        cv::Point top_left(1650 ,100);
+        cv::Point bottom_right(1896,263);
+
+
+        cv::Rect roi_rect(top_left, bottom_right);
+
+        cv::Mat roi = bgr(roi_rect).clone();
+        cv::Point2f midpoint  (roi.cols/2.0,roi.rows/2.0);
+
+
+
+
+        cv::Mat hsv_img;//灰度图
+        cv::cvtColor(roi, hsv_img, cv::COLOR_BGR2HSV);
+
+
+        // 2️⃣ 生成掩码：检测纯白像素（白色像素=255，其余=0）
+        cv::Mat mask_red;
+        cv::inRange(  hsv_img , cv::Scalar(0,220, 242), cv::Scalar(0,225, 248),mask_red);//mask_white取值0:255
+        cv::Mat mask_yellow;
+        cv::inRange(  hsv_img , cv::Scalar(20,148,242), cv::Scalar(24,152,248),mask_yellow);//mask_white取值0:255
+        cv::bitwise_or(mask_red, mask_yellow, mask_red);//按位或，算出所有颜色的掩码
+
+        // 竖向连接：用“竖线核”
+        cv::Mat kV = cv::getStructuringElement(cv::MORPH_RECT, {1, 2});
+        cv::morphologyEx(mask_red, mask_red, cv::MORPH_CLOSE, kV, {-1,-1}, 1);
+
+        // cv::Mat connected = mask.clone();
+        //
+        // // 竖向连接：用“竖线核”
+        // cv::Mat kV = cv::getStructuringElement(cv::MORPH_RECT, {1, 7});
+        // cv::morphologyEx(connected, connected, cv::MORPH_CLOSE, kV, {-1,-1}, 1);
+        //
+        // // 横向连接（如需要）：
+        // // cv::Mat kH = cv::getStructuringElement(cv::MORPH_RECT, {7, 1});
+        // // cv::morphologyEx(connected, connected, cv::MORPH_CLOSE, kH, {-1,-1}, 1);
+        // 调参：
+        //
+        // {1,7} 里的 7 越大，能跨越的“断口”越大（但也更容易误连）
+
+
+        // 3) 连通域
+        cv::Mat labels, stats, centroids;
+        int n = cv::connectedComponentsWithStats(mask_red, labels, stats, centroids, 8, CV_32S);
         // ====== 4) 遍历连通域，计算外接圆 ======
         for (int i = 1; i < n; ++i) { // 0 是背景
             int area = stats.at<int>(i, cv::CC_STAT_AREA);
@@ -113,11 +227,11 @@ std::vector< cv::Point2f> core::get_minmap_loction_monster(cv::Mat& bgr)
             monster.push_back(center_global);
 
 
-            std::cout << "label=" << i
-                      << " area=" << area
-                      << " center_roi=(" << center_roi.x << "," << center_roi.y << ")"
-                      << " center_global=(" << center_global.x << "," << center_global.y << ")"
-                      << " r=" << radius << "\n";
+            // std::cout << "label=" << i
+            //           << " area=" << area
+            //           << " center_roi=(" << center_roi.x << "," << center_roi.y << ")"
+            //           << " center_global=(" << center_global.x << "," << center_global.y << ")"
+            //           << " r=" << radius << "\n";
          // 可视化（在 ROI 上画）
             cv::circle(img_frame_debug, center_global, (int)std::round(radius), cv::Scalar(0,255,0), 2);
             cv::circle(img_frame_debug, center_global, 2, cv::Scalar(0,0,255), -1);
@@ -181,6 +295,7 @@ std::vector<cv::Rect>
 
 std::tuple<cv::Point2f, double> core::findClosestmonster(const std::vector<cv::Point2f>& contours)
 {
+
     cv::Point2f top_left(1650, 100);
     cv::Point2f bottom_right(1898, 264);
     cv::Point2f midpoint = (top_left + bottom_right) / 2.0f;
@@ -205,7 +320,15 @@ std::tuple<cv::Point2f, double> core::findClosestmonster(const std::vector<cv::P
 
     return std::make_tuple(position, min_distance);
 }
-////////////////////////复活
+////////////////////////检查是否有f拾取东
+bool core::has_Objects() {
+    auto [point, socore, _] = Common::find_pattern_sqdiff(img_frame, img_F);
+    if (socore < 0.2) {
+        return false;
+    }
+    return true;
+}
+
 
 
 // ======================= Lifecycle =======================
@@ -229,6 +352,7 @@ void core::start() {
     t_last_skill_ = 0.0;
     is_terminated_ = false;
     bool_is_life =cv::imread("../msvc/life.png", cv::IMREAD_COLOR);
+    img_F=cv::imread("../msvc/F.png", cv::IMREAD_COLOR);
 }
 
 int core::run_once()
@@ -238,6 +362,7 @@ int core::run_once()
     }
 
     cv::Mat bgr = capture_->getFrame();
+          // cv::Mat bgr = cv::imread("E://photo//8.png", cv::IMREAD_COLOR);
     if (bgr.empty()) {
         return -1;
     }
@@ -252,13 +377,22 @@ int core::run_once()
 
 
     // 更新感知数据
-    monster_minmap = get_minmap_loction_monster(bgr);
+    {
+        monster_minmap = get_minmap_loction_monster_white(bgr);
+        std::vector<cv::Point2f> a=get_minmap_loction_monster_red_yellow(bgr);
+        // 将a的所有元素插入到monster_minmap的末尾
+        monster_minmap.insert(monster_minmap.end(), a.begin(), a.end());
+    }
+
     screen_monster_player = get_player_and_monster_location_by_party_red_bar(bgr);
     closet_monster_minmap = findClosestmonster(monster_minmap);
 
 
     // 执行行为树
-    root_->tick(bb_);
+    auto start = std::chrono::steady_clock::now();
+        root_->tick(bb_);
+    auto duration = std::chrono::steady_clock::now() - start;
+    LOG_INFO("[core] run_once behavior tree took {} ms", std::chrono::duration_cast<std::chrono::milliseconds>(duration).count());
 
     return 1;
 }
@@ -296,6 +430,6 @@ void core::stop() {
     }
     // InterceptionManager 会在析构时自动 shutdown
 }
-
+//
 
 

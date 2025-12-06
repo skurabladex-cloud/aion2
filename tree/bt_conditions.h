@@ -35,7 +35,7 @@ public:
     bool evaluate(BTBlackboard& bb) override {
         auto* bot = bb.get_bot();
         auto& [a, b] = bot->closet_monster_minmap;
-        return b<8;
+        return b<7;
     }
 };
 

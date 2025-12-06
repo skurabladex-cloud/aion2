@@ -6,7 +6,7 @@
 #include <thread>
 #include <atomic>
 #include <nlohmann/json.hpp>
-
+#include "../core/buffer.h"
 class GameWindowCapturer {
 public:
     GameWindowCapturer(const nlohmann::json& cfg, const std::string& test_image_name = "");//E:/photo/16dsasda
@@ -33,6 +33,8 @@ private:
     std::thread capture_thread_;//后台捕获线程的句柄
     cv::Mat frame_;//存储当前捕获到的图像帧（OpenCV矩阵格式）
     std::string window_title_;//用：要捕获的游戏窗口标题
+    SPSC_DoubleBuffer<cv::Mat> buffer_;//图片双缓冲区
+    std::atomic<bool> new_data_available_{false};;
 
     HWND hwnd_ = nullptr;
 };

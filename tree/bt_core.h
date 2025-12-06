@@ -20,33 +20,9 @@ struct BTBlackboard {
 
     class core *get_bot() const { return bot; }
     
-    // 行为树执行路径跟踪
-    std::vector<std::string> execution_path_;
+
     
-    // 获取当前执行路径（以 " -> " 分隔）
-    std::string get_path_string() const {
-        if (execution_path_.empty()) {
-            return "";
-        }
-        std::string path;
-        for (size_t i = 0; i < execution_path_.size(); ++i) {
-            if (i > 0) path += " -> ";
-            path += execution_path_[i];
-        }
-        return path;
-    }
-    
-    // 推入路径节点
-    void push_path(const std::string& node_name) {
-        execution_path_.push_back(node_name);
-    }
-    
-    // 弹出路径节点
-    void pop_path() {
-        if (!execution_path_.empty()) {
-            execution_path_.pop_back();
-        }
-    }
+
 };
 
 // ===================== 节点基类 =====================
@@ -131,9 +107,7 @@ public:
     }
 
     BTStatus tick(BTBlackboard& bb) override {
-        // 推入当前节点到路径
-        bb.push_path(name_);
-        
+
         // 所有子节点顺序执行：遇到 FAILURE / RUNNING 就停
         BTStatus result = BTStatus::SUCCESS;
         for (auto& child : children_) {
@@ -144,8 +118,7 @@ public:
             }
         }
         
-        // 弹出当前节点
-        bb.pop_path();
+
         
         return result;
     }
@@ -165,8 +138,7 @@ public:
     }
 
     BTStatus tick(BTBlackboard& bb) override {
-        // 推入当前节点到路径
-        bb.push_path(name_);
+
         
         // 优先级从前到后：找到第一个不是 FAILURE 的就返回
         BTStatus result = BTStatus::FAILURE;
@@ -178,9 +150,7 @@ public:
             }
         }
         
-        // 弹出当前节点
-        bb.pop_path();
-        
+
         return result;
     }
 

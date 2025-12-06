@@ -425,6 +425,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="E:\ailon2\core\core.cpp" />
     <ClCompile Include="E:\ailon2\input\GameWindowCapturer.cpp" />
     <ClCompile Include="E:\ailon2\tree\bt_tree.cpp" />
+    <ClInclude Include="E:\ailon2\core\buffer.h" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

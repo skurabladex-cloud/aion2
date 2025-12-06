@@ -51,17 +51,23 @@ GameWindowCapturer::~GameWindowCapturer() {
 
 void GameWindowCapturer::captureLoop() {//
     while (!is_terminated_) {
-        cv::Mat new_frame = CaptureVirtualScreenBGRA();//获取三通道图片
+        cv::Mat& new_frame = buffer_.write_buffer(); // 写 back
+        new_frame= CaptureVirtualScreenBGRA();           // 填数据（可写多项）
+                      // 原子发布：front/back 交换
+        // cv::Mat new_frame = CaptureVirtualScreenBGRA();//获取三通道图片
         cv::cvtColor(new_frame, new_frame, cv::COLOR_BGRA2BGR);
-        if (new_frame.empty()) continue;
-
-        {
-            std::lock_guard<std::mutex> lock(frame_mutex_);//枷锁，主线程要不停去读取这个照片
-            frame_ = new_frame;
-           // Common::screenshot(new_frame, "img_frame");
-
-
-        }
+        frame_ = new_frame;
+        buffer_.publish();
+        new_data_available_.store(true, std::memory_order_release);
+        // if (new_frame.empty()) continue;
+        //
+        // {
+        //     std::lock_guard<std::mutex> lock(frame_mutex_);//枷锁，主线程要不停去读取这个照片
+        //     frame_ = new_frame;
+        //    // Common::screenshot(new_frame, "img_frame");
+        //
+        //
+        // }
 
        limitFPS();
     }
@@ -174,9 +180,17 @@ void GameWindowCapturer::limitFPS() {//执行第二次才有意义
 }
 
 cv::Mat GameWindowCapturer::getFrame() {//主线程要不停去截取frame
-    std::lock_guard<std::mutex> lock(frame_mutex_);
-    if (frame_.empty()) return {};
-    return frame_.clone();
+    // std::lock_guard<std::mutex> lock(frame_mutex_);
+    // if (frame_.empty()) return {};
+    // return frame_.clone();
+    if (!new_data_available_.load(std::memory_order_acquire))
+        return cv::Mat();
+
+        const cv::Mat r = buffer_.read_buffer(); // 读 front（快照）
+        if (r.empty()) throw std::runtime_error("Empty buffer");
+             return r;
+     new_data_available_.store(false, std::memory_order_release);
+
 }
 
 void GameWindowCapturer::stop() {//主线程调用

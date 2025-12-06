@@ -1,4 +1,3 @@
-
  cmake_minimum_required(VERSION 3.20)
 project(ailon2 LANGUAGES CXX)
 
@@ -11,7 +10,7 @@ find_package(OpenCV REQUIRED)
 
 # ---------------- Interception ----------------
 # 改成你实际解压路径（包含 command line installer / library / samples 的那个目录）
-set(INTERCEPTION_ROOT "D:/鼠标调用/Interception")
+set(INTERCEPTION_ROOT "E:/鼠标调用/Interception")
 
 # 头文件在: ${INTERCEPTION_ROOT}/library/interception.h
 set(INTERCEPTION_INCLUDE_DIR "${INTERCEPTION_ROOT}/library")
@@ -27,6 +26,7 @@ add_executable(ailon2
         core/core.cpp
         input/GameWindowCapturer.cpp
         tree/bt_tree.cpp
+        core/buffer.h
 )
 
 # 项目根目录（用于包含 interception/、input/、core/、tree/ 等）

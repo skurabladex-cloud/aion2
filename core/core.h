@@ -17,8 +17,8 @@ class core
 public:
     /////s
     core();
-    std::vector< cv::Point2f>  get_minmap_loction_monster(cv::Mat& bgr);//怪物在小地图上的坐标
-
+    std::vector< cv::Point2f>  get_minmap_loction_monster_white(cv::Mat& bgr);//怪物在小地图上的坐标
+    std::vector< cv::Point2f> get_minmap_loction_monster_red_yellow(cv::Mat& bgr);
 
     std::vector<cv::Rect>
         get_player_and_monster_location_by_party_red_bar(cv::Mat & bgr);//怪物和玩家在屏幕上的坐标
@@ -30,11 +30,14 @@ public:
     void    start();
     void    loop();
     void    stop();  // 停止循环
+    bool    has_Objects() ;//检查是否需要商品
 
     cv::Mat img_frame;
     cv::Mat img_frame_debug;
     cv::Mat bool_is_life;
     cv::Point re_life;//是否需要复活坐标
+    cv::Mat img_F;
+
 
     nlohmann::json cfg_;//窗口标题、捕获区域、FPS限制等参数
     std::vector<cv::Point2f> monster_minmap;//怪物在小地图上的坐标
@@ -56,6 +59,12 @@ public:
     double action_cd;//技能动作间隔
     double t_last_skill_;
     size_t last_skill_index_{0};  // 上次释放的技能索引，用于轮换
+    //SPSC_DoubleBuffer<bot_input:: InputIntent3D> buffer_;//指令双双缓冲区
+
+
+    std::atomic<int> Debounce_{0};
+
+
 
 
 

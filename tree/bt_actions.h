@@ -11,19 +11,8 @@ using namespace std::chrono;
 #include"../core/logger.h"
 #include<random>
 
-// 辅助函数：打印行为树执行路径
-inline void print_bt_path(BTBlackboard& bb, const std::string& action_name, BTStatus status) {
-    std::string path = bb.get_path_string();
-    const char* status_str = (status == BTStatus::SUCCESS) ? "SUCCESS" : 
-                             (status == BTStatus::FAILURE) ? "FAILURE" : "RUNNING";
-    std::string full_path;
-    if (path.empty()) {
-        full_path = action_name;
-    } else {
-        full_path = path + " -> " + action_name;
-    }
-    LOG_INFO("[BT路径] {} -> {}", full_path, status_str);
-}
+
+
 
 // struct InputIntent3D {
 //     int move_fb = 0;   // forward/back:  +1=W, -1=S
@@ -71,10 +60,13 @@ public:
                  break;
              }
          }
+         bool f=bot->has_Objects();
+         if (f) it.tap_keys.push_back("f");
 
          bot->input_->apply(it);
         BTStatus status = BTStatus::RUNNING;
-        print_bt_path(bb, this->name(), status);
+
+         bot->Debounce_.store(0);
         return status;
     }
 };
@@ -116,7 +108,8 @@ public:
 
         bot->input_->apply(it);
         BTStatus status = BTStatus::RUNNING;
-        print_bt_path(bb, this->name(), status);
+
+        bot->Debounce_.store(0);
         return status;
     }
 };
@@ -141,12 +134,34 @@ public:
             return d(rng);
         };
 
-        it.look_dx = rand_int(5, 14);
+        it.look_dx = rand_int(0, 8);
         it.look_dy = rand_int(-1, 1);
         bot->input_->apply(it);
         BTStatus status = BTStatus::RUNNING;
-        print_bt_path(bb, this->name(), status);
+
         return status;
+
+    }
+};
+
+// ===================== 行为：按住tab找到怪物=====================
+class tabdown : public BTAction {
+
+
+public:
+    tabdown() : BTAction("tabdown") {}
+
+
+    BTStatus do_tick(BTBlackboard& bb) override {
+        auto* bot = bb.get_bot();
+        bot_input::InputIntent3D it;
+
+        it.tap_keys.push_back("tab");
+        bot->input_->apply(it);
+        bot->Debounce_.store(0);
+        return BTStatus::RUNNING;
+
+
 
     }
 };
@@ -201,7 +216,7 @@ public:
 
         on_exit(bb);
         BTStatus status = BTStatus::RUNNING;
-        print_bt_path(bb, this->name(), status);
+
         return status;
 
     }
@@ -233,10 +248,84 @@ public:
         bot->input_->apply(it);
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         BTStatus status = BTStatus::SUCCESS;
-        print_bt_path(bb, this->name(), status);
+
+       bot->Debounce_.store(0);
         return status;
 
     }
 };
+// ===================== 行为：到怪物点=====================
+class clickPath : public BTAction {
+
+
+public:
+   clickPath() : BTAction("clickPathwd") {}
+    void on_enter(BTBlackboard& bb) {
+       auto* bot = bb.get_bot();
+       bot->Debounce_.fetch_add(1);
+
+   }
+
+
+
+    BTStatus do_tick(BTBlackboard& bb) override {
+       auto* bot = bb.get_bot();
+
+       bot_input::InputIntent3D it;
+       //it.lmb_click =true;
+       on_enter(bb) ;
+       bot->input_->apply(it);
+       if (bot->Debounce_.load()<3) {
+
+           return BTStatus::RUNNING;
+       }
+
+       interception::InterceptionManager& t=interception::manager();
+
+       {
+            t.press_key("m");
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+       }
+
+
+
+       {
+           bot_input::InputIntent3D it;
+
+
+            //it.lmb_click =true;
+            // it.click_x = 985;
+            // it.click_y =568;
+            // it.click_left = false;;
+            t.mouse_click_at(986,568,false);
+
+
+
+            //bot->input_->apply(it);
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+       }
+       {
+            // bot_input::InputIntent3D it;
+            // it.click_x = 1883;
+            // it.click_y =42;
+            // it.click_left = true;;
+            t.mouse_click_at(1883,42,false);
+            std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+       }
+
+        BTStatus status = BTStatus::SUCCESS;
+       LOG_INFO("");
+
+        on_exit(bb);
+        return status;
+
+    }
+    virtual void on_exit(BTBlackboard& bb) {
+
+       auto* bot = bb.get_bot();
+       bot->Debounce_.store(0);
+   }
+};
+
 
 

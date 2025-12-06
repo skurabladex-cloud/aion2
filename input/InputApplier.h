@@ -1,7 +1,7 @@
 #pragma once
 // 输入意图执行器：将 InputIntent3D 转换为实际的按键/鼠标操作
 // 使用单独线程异步执行输入，避免阻塞主循环
-
+#include"core/buffer.h"
 #include <string>
 #include <vector>
 #include <map>
@@ -32,17 +32,23 @@ struct InputIntent3D {
     std::vector<std::string> tap_keys;
     std::vector<std::string> hold_keys;
     bool stop_all = false;
-    
+
     // 绝对位置点击（屏幕坐标，-1 表示不使用）
     int click_x = -1;      // 点击位置 X 坐标
     int click_y = -1;      // 点击位置 Y 坐标
     bool click_left = true;  // true=左键, false=右键
 };
+struct InputIntentFrame {
+    InputIntent3D intent;
+    uint64_t version = 0;
+};
 // ===================== 执行器 =====================
 class InputApplier {
 public:
     InputApplier() {
-        interception::manager().init();
+        if (!interception::manager().init()) {
+            LOG_ERROR("[InputApplier] Interception driver init failed.");
+        }
         is_terminated_ = false;
         input_thread_ = std::thread(&InputApplier::input_thread_loop, this);
     }
@@ -68,9 +74,11 @@ public:
 
     // 更新输入意图
     void apply(const InputIntent3D& it) {
-        std::lock_guard<std::mutex> lk(intent_mtx_);
-        current_intent_ = it;
-        intent_version_++;  // 每次更新意图时递增版本号
+        auto& frame = input_intent_.write_buffer();
+        frame.intent = it;
+        frame.version = ++intent_version_;
+        input_intent_.publish();
+        new_data_available_.store(true, std::memory_order_release);
     }
 
     // 停止输入线程
@@ -94,17 +102,21 @@ private:
     void input_thread_loop() {
         auto& mgr = interception::manager();
         uint64_t last_processed_version = 0;  // 记录上次处理的版本号
-        
+
         while (!is_terminated_) {
-            InputIntent3D it;
-            uint64_t current_version = 0;
-            {
-                std::lock_guard<std::mutex> lk(intent_mtx_);
-                current_version = intent_version_;
-
-                it = current_intent_;
-
+            if (!new_data_available_.load(std::memory_order_acquire)) {
+                std::this_thread::sleep_for(std::chrono::milliseconds(1));
+                continue;
             }
+
+            InputIntentFrame frame = input_intent_.read_buffer();
+            // if (frame.version == 0 || frame.version == last_processed_version) {
+            //     new_data_available_.store(false, std::memory_order_release);
+            //     continue;
+            // }
+
+            const InputIntent3D& it = frame.intent;
+           // new_data_available_.store(false, std::memory_order_release);
 
             if (it.stop_all) {
                 release_all();
@@ -131,9 +143,11 @@ private:
             if (wantD && !heldD_) { mgr.key_down(key_d); heldD_ = true; }
             if (!wantD && heldD_) { mgr.key_up(key_d); heldD_ = false; }
 
-            // Shift/Ctrl
+            // Shift/Ctrl/tbale
             if (it.sprint && !heldShift_) { mgr.key_down(key_shift); heldShift_ = true; }
             if (!it.sprint && heldShift_) { mgr.key_up(key_shift); heldShift_ = false; }
+            if (it.crouch && !heldCtrl_) { mgr.key_down(key_ctrl); heldCtrl_ = true; }
+            if (!it.crouch && heldCtrl_) { mgr.key_up(key_ctrl); heldCtrl_ = false; }
             if (it.crouch && !heldCtrl_) { mgr.key_down(key_ctrl); heldCtrl_ = true; }
             if (!it.crouch && heldCtrl_) { mgr.key_up(key_ctrl); heldCtrl_ = false; }
 
@@ -163,29 +177,29 @@ private:
             }
 
             // 键盘点按（带冷却时间控制）
-            double current_time_sec = std::chrono::duration_cast<std::chrono::duration<double>>(
-                std::chrono::steady_clock::now().time_since_epoch()
-            ).count();
-            
-            if (it.jump) {
-                auto it_time = key_last_press_time_.find(key_space);
-                if (it_time == key_last_press_time_.end() || 
-                    (current_time_sec - it_time->second) >= key_cooldown_sec) {
-                    mgr.press_key(key_space, tap_sec);
-                    key_last_press_time_[key_space] = current_time_sec;
-                }
-            }
-            if (it.attack) {
-                auto it_time = key_last_press_time_.find(key_attack);
-                if (it_time == key_last_press_time_.end() || 
-                    (current_time_sec - it_time->second) >= key_cooldown_sec) {
-                    mgr.press_key(key_attack, tap_sec);
-                    key_last_press_time_[key_attack] = current_time_sec;
-                }
-            }
-            // 检查是否有新的意图更新
-            bool has_new_intent = (current_version != last_processed_version);
-            
+            // double current_time_sec = std::chrono::duration_cast<std::chrono::duration<double>>(
+            //     std::chrono::steady_clock::now().time_since_epoch()
+            // ).count();
+            //
+            // if (it.jump) {
+            //     auto it_time = key_last_press_time_.find(key_space);
+            //     if (it_time == key_last_press_time_.end() ||
+            //         (current_time_sec - it_time->second) >= key_cooldown_sec) {
+            //         mgr.press_key(key_space, tap_sec);
+            //         key_last_press_time_[key_space] = current_time_sec;
+            //     }
+            // }
+            // if (it.attack) {
+            //     auto it_time = key_last_press_time_.find(key_attack);
+            //     if (it_time == key_last_press_time_.end() ||
+            //         (current_time_sec - it_time->second) >= key_cooldown_sec) {
+            //         mgr.press_key(key_attack, tap_sec);
+            //         key_last_press_time_[key_attack] = current_time_sec;
+            //     }
+            // }
+           // 检查是否有新的意图更新
+           bool has_new_intent =  last_processed_version != frame.version;;
+
             // 处理 tap_keys（只有在版本更新时才执行）
             if (has_new_intent) {
                 for (const auto& k : it.tap_keys) {
@@ -200,11 +214,11 @@ private:
                 mgr.mouse_move_rel(it.look_dx, it.look_dy);
                 std::this_thread::sleep_for(std::chrono::milliseconds(mouse_move_delay_ms));
             }
-            
-            // 更新版本号（在所有处理完成后）
-            if (has_new_intent) {
-                last_processed_version = current_version;
-            }
+
+            // // 更新版本号（在所有处理完成后）
+            // if (has_new_intent) {
+            //     last_processed_version = current_version;
+            // }
 
             // 鼠标按住
             if (it.lmb_hold && !heldLmb_) { mgr.mouse_left_down(); heldLmb_ = true; }
@@ -221,23 +235,25 @@ private:
                 mgr.mouse_click_at(it.click_x, it.click_y, it.click_left, mouse_tap_sec);
             }
 
-            // 输入线程循环间隔
-            std::this_thread::sleep_for(std::chrono::milliseconds(5));
+            last_processed_version = frame.version;//更新版本号（在所有处理完成后）
+
+            // 输入线程循环间隙：处理完一帧后让出 CPU
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
         }
     }
 
     std::thread input_thread_;
     std::atomic<bool> is_terminated_{false};
 
-    InputIntent3D current_intent_{};
-    std::mutex intent_mtx_;
     std::atomic<uint64_t> intent_version_{0};  // 意图版本号，用于检测是否有新意图
-
     bool heldW_{false}, heldA_{false}, heldS_{false}, heldD_{false};
     bool heldShift_{false}, heldCtrl_{false};
     bool heldLmb_{false}, heldRmb_{false};
     std::vector<std::string> dynamic_held_;
     std::map<std::string, double> key_last_press_time_;  // 记录每个按键的上次触发时间
+
+    SPSC_DoubleBuffer<InputIntentFrame> input_intent_;//按键缓冲区
+    std::atomic<bool> new_data_available_{false};
 };
 
 } // namespace bot_inputWDDDAWDSA

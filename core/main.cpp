@@ -37,11 +37,26 @@ int main()
         LOG_ERROR("[main] Fatal error: {}", e.what());
         return 1;
     }
+    // cv::Mat img=cv::imread("E:\\photo\\2.png");
+    // cv::Rect rect=cv::Rect(cv::Point(1059 ,631 ),cv::Point(1072,644));
+    // cv::Mat img2=img(rect);
+    // cv::imwrite("E:\\photo\\3.png",img2);
 
-    // interception::InterceptionManager& a= interception::manager() ;
-    // while (1)
-    // {
-    //      a.press_key("2");
+    // cv::Mat bgr = cv::imread("E://photo//5.png", cv::IMREAD_COLOR);
+    // cv::Mat gray_img;//灰度图
+    // cv::cvtColor(bgr, gray_img, cv::COLOR_BGR2GRAY);
+    // cv::Mat mask_white;
+    // cv::inRange(  gray_img , 255, 255, mask_white);//
+
+
+
+
+
+
+
+    // interception::InterceptionManager &a = interception::manager();
+    //  while (1) {
+    //     a.press_key("2");
     //     std::this_thread::sleep_for(std::chrono::milliseconds(500));
     // }
 
@@ -50,3 +65,4 @@ int main()
 
     return 0;
 }
+
